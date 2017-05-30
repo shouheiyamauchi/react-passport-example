@@ -14595,7 +14595,7 @@ var PrivateRoute = function PrivateRoute(_ref) {
     } }));
 };
 
-var SignUpRoute = function SignUpRoute(_ref2) {
+var LoggedOutRoute = function LoggedOutRoute(_ref2) {
   var Component = _ref2.component,
       rest = _objectWithoutProperties(_ref2, ['component']);
 
@@ -14693,12 +14693,12 @@ var Main = function (_Component) {
                   } }));
               } }),
             _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: _DashboardPage2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
+            _react2.default.createElement(LoggedOutRoute, { path: '/login', render: function render(props) {
                 return _react2.default.createElement(_LoginPage2.default, _extends({}, props, { toggleAuthenticateStatus: function toggleAuthenticateStatus() {
                     return _this2.toggleAuthenticateStatus();
                   } }));
               } }),
-            _react2.default.createElement(SignUpRoute, { path: '/signup', component: _SignUpPage2.default }),
+            _react2.default.createElement(LoggedOutRoute, { path: '/signup', component: _SignUpPage2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/logout', component: _LogoutFunction2.default })
           )
         )

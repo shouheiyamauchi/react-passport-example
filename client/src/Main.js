@@ -36,7 +36,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-const SignUpRoute = ({ component: Component, ...rest }) => (
+const LoggedOutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     Auth.isUserAuthenticated() ? (
       <Redirect to={{
@@ -95,10 +95,10 @@ class Main extends Component {
               <HomePage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             )}/>
             <PrivateRoute path="/dashboard" component={DashboardPage}/>
-            <Route path="/login" render={(props) => (
+            <LoggedOutRoute path="/login" render={(props) => (
               <LoginPage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             )}/>
-            <SignUpRoute path="/signup" component={SignUpPage}/>
+            <LoggedOutRoute path="/signup" component={SignUpPage}/>
             <Route path="/logout" component={LogoutFunction}/>
           </div>
 
