@@ -14693,7 +14693,7 @@ var Main = function (_Component) {
                   } }));
               } }),
             _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: _DashboardPage2.default }),
-            _react2.default.createElement(LoggedOutRoute, { path: '/login', render: function render(props) {
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
                 return _react2.default.createElement(_LoginPage2.default, _extends({}, props, { toggleAuthenticateStatus: function toggleAuthenticateStatus() {
                     return _this2.toggleAuthenticateStatus();
                   } }));

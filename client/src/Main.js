@@ -95,7 +95,7 @@ class Main extends Component {
               <HomePage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             )}/>
             <PrivateRoute path="/dashboard" component={DashboardPage}/>
-            <LoggedOutRoute path="/login" render={(props) => (
+            <Route path="/login" render={(props) => (
               <LoginPage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             )}/>
             <LoggedOutRoute path="/signup" component={SignUpPage}/>
