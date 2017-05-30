@@ -4,14 +4,9 @@ import Auth from '../modules/Auth';
 
 
 class LogoutFunction extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  };
 
   componentDidMount() {
-    // check if user is logged in on refresh
+    // deauthenticate user
     Auth.deauthenticateUser();
     // change the current URL to / after logout
     this.props.history.push('/');

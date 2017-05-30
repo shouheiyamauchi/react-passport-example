@@ -15332,7 +15332,7 @@ var LoginPage = function (_React$Component) {
           // update authenticated state
           _this2.props.toggleAuthenticateStatus();
 
-          // change the current URL to /
+          // redirect signed in user to dashboard
           _this2.props.history.push('/dashboard');
         } else {
           // failure
@@ -15429,19 +15429,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var LogoutFunction = function (_React$Component) {
   _inherits(LogoutFunction, _React$Component);
 
-  function LogoutFunction(props) {
+  function LogoutFunction() {
     _classCallCheck(this, LogoutFunction);
 
-    var _this = _possibleConstructorReturn(this, (LogoutFunction.__proto__ || Object.getPrototypeOf(LogoutFunction)).call(this, props));
-
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, (LogoutFunction.__proto__ || Object.getPrototypeOf(LogoutFunction)).apply(this, arguments));
   }
 
   _createClass(LogoutFunction, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      // check if user is logged in on refresh
+      // deauthenticate user
       _Auth2.default.deauthenticateUser();
       // change the current URL to / after logout
       this.props.history.push('/');
@@ -15567,7 +15564,7 @@ var SignUpPage = function (_React$Component) {
           // set a message
           localStorage.setItem('successMessage', xhr.response.message);
 
-          // make a redirect
+          // redirect user after sign up to login page
           _this2.props.history.push('/login');
         } else {
           // failure
