@@ -14694,7 +14694,10 @@ var Main = function (_Component) {
               } }),
             _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: _DashboardPage2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
-                return _react2.default.createElement(_LoginPage2.default, _extends({}, props, { toggleAuthenticateStatus: function toggleAuthenticateStatus() {
+                return _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(_reactRouterDom.Redirect, { to: {
+                    pathname: '/',
+                    state: { from: props.location }
+                  } }) : _react2.default.createElement(_LoginPage2.default, _extends({}, props, { toggleAuthenticateStatus: function toggleAuthenticateStatus() {
                     return _this2.toggleAuthenticateStatus();
                   } }));
               } }),
