@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
-
 const Dashboard = ({ secretData }) => (
   <Card className="container">
     <CardTitle

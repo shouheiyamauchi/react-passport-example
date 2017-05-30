@@ -36,13 +36,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 const logoutFunc = (props) => {
-        Auth.deauthenticateUser();
+  Auth.deauthenticateUser();
 
-        // change the current URL to /
-        props.history.push('/');
-        return null;
-        // return <LoginPage />;
-      }
+  // change the current URL to /
+  props.history.push('/');
+  return null;
+  // return <LoginPage />;
+}
 
 class Main extends Component {
   constructor(props) {
@@ -60,7 +60,6 @@ class Main extends Component {
   toggleAuthenticateStatus() {
     // check authenticated status and toggle state based on that
     this.setState({ authenticated: Auth.isUserAuthenticated() })
-
   }
 
   render() {
