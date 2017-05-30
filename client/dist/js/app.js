@@ -14786,7 +14786,8 @@ var _Card = __webpack_require__(63);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Dashboard = function Dashboard(_ref) {
-  var secretData = _ref.secretData;
+  var secretData = _ref.secretData,
+      user = _ref.user;
   return _react2.default.createElement(
     _Card.Card,
     { className: 'container' },
@@ -14797,6 +14798,14 @@ var Dashboard = function Dashboard(_ref) {
     secretData && _react2.default.createElement(
       _Card.CardText,
       { style: { fontSize: '16px', color: 'green' } },
+      'Welcome ',
+      _react2.default.createElement(
+        'strong',
+        null,
+        user.name
+      ),
+      '!',
+      _react2.default.createElement('br', null),
       secretData
     )
   );
@@ -15156,7 +15165,8 @@ var DashboardPage = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (DashboardPage.__proto__ || Object.getPrototypeOf(DashboardPage)).call(this, props));
 
     _this.state = {
-      secretData: ''
+      secretData: '',
+      user: {}
     };
     return _this;
   }
@@ -15180,7 +15190,8 @@ var DashboardPage = function (_React$Component) {
       xhr.addEventListener('load', function () {
         if (xhr.status === 200) {
           _this2.setState({
-            secretData: xhr.response.message
+            secretData: xhr.response.message,
+            user: xhr.response.user
           });
         }
       });
@@ -15194,7 +15205,7 @@ var DashboardPage = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_Dashboard2.default, { secretData: this.state.secretData });
+      return _react2.default.createElement(_Dashboard2.default, { secretData: this.state.secretData, user: this.state.user });
     }
   }]);
 
