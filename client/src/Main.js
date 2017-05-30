@@ -35,6 +35,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
+const SignUpRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    Auth.isUserAuthenticated() ? (
+      <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }}/>
+    ) : (
+      <Component {...props}/>
+    )
+  )}/>
+)
+
 const logoutFunc = (props) => {
         Auth.deauthenticateUser();
 
@@ -93,7 +106,7 @@ class Main extends Component {
             <Route path="/login" render={(props) => (
               <LoginPage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             )}/>
-            <Route path="/signup" component={SignUpPage}/>
+          <SignUpRoute path="/signup" component={SignUpPage}/>
             <Route path="/logout" component={logoutFunc}/>
           </div>
 

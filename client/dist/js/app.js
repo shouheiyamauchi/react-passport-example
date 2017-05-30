@@ -14591,6 +14591,18 @@ var PrivateRoute = function PrivateRoute(_ref) {
     } }));
 };
 
+var SignUpRoute = function SignUpRoute(_ref2) {
+  var Component = _ref2.component,
+      rest = _objectWithoutProperties(_ref2, ['component']);
+
+  return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
+      return _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(_reactRouterDom.Redirect, { to: {
+          pathname: '/',
+          state: { from: props.location }
+        } }) : _react2.default.createElement(Component, props);
+    } }));
+};
+
 var logoutFunc = function logoutFunc(props) {
   _Auth2.default.deauthenticateUser();
 
@@ -14691,7 +14703,7 @@ var Main = function (_Component) {
                     return _this2.toggleAuthenticateStatus();
                   } }));
               } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _SignUpPage2.default }),
+            _react2.default.createElement(SignUpRoute, { path: '/signup', component: _SignUpPage2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/logout', component: logoutFunc })
           )
         )
