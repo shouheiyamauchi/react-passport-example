@@ -15,6 +15,7 @@ import {
 import Base from './components/Base.jsx';
 import HomePage from './components/HomePage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
+import LogoutFunction from './containers/LogoutFunction.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import DashboardPage from './containers/DashboardPage.jsx';
 import Auth from './modules/Auth';
@@ -47,15 +48,6 @@ const SignUpRoute = ({ component: Component, ...rest }) => (
     )
   )}/>
 )
-
-const logoutFunc = (props) => {
-        Auth.deauthenticateUser();
-
-        // change the current URL to /
-        props.history.push('/');
-        return null;
-        // return <LoginPage />;
-      }
 
 class Main extends Component {
   constructor(props) {
@@ -106,8 +98,8 @@ class Main extends Component {
             <Route path="/login" render={(props) => (
               <LoginPage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             )}/>
-          <SignUpRoute path="/signup" component={SignUpPage}/>
-            <Route path="/logout" component={logoutFunc}/>
+            <SignUpRoute path="/signup" component={SignUpPage}/>
+            <Route path="/logout" component={LogoutFunction}/>
           </div>
 
         </Router>
