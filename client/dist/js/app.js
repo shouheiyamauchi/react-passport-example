@@ -14603,7 +14603,16 @@ var LoggedOutRoute = function LoggedOutRoute(_ref2) {
       return _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(_reactRouterDom.Redirect, { to: {
           pathname: '/',
           state: { from: props.location }
-        } }) : _react2.default.createElement(Component, props);
+        } }) : _react2.default.createElement(Component, _extends({}, props, rest));
+    } }));
+};
+
+var PropsRoute = function PropsRoute(_ref3) {
+  var Component = _ref3.component,
+      rest = _objectWithoutProperties(_ref3, ['component']);
+
+  return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
+      return _react2.default.createElement(Component, _extends({}, props, rest));
     } }));
 };
 
@@ -14687,19 +14696,12 @@ var Main = function (_Component) {
                 )
               )
             ),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
-                return _react2.default.createElement(_HomePage2.default, _extends({}, props, { toggleAuthenticateStatus: function toggleAuthenticateStatus() {
-                    return _this2.toggleAuthenticateStatus();
-                  } }));
+            _react2.default.createElement(PropsRoute, { exact: true, path: '/', component: _HomePage2.default, toggleAuthenticateStatus: function toggleAuthenticateStatus() {
+                return _this2.toggleAuthenticateStatus();
               } }),
             _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: _DashboardPage2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
-                return _Auth2.default.isUserAuthenticated() ? _react2.default.createElement(_reactRouterDom.Redirect, { to: {
-                    pathname: '/',
-                    state: { from: props.location }
-                  } }) : _react2.default.createElement(_LoginPage2.default, _extends({}, props, { toggleAuthenticateStatus: function toggleAuthenticateStatus() {
-                    return _this2.toggleAuthenticateStatus();
-                  } }));
+            _react2.default.createElement(LoggedOutRoute, { path: '/login', component: _LoginPage2.default, toggleAuthenticateStatus: function toggleAuthenticateStatus() {
+                return _this2.toggleAuthenticateStatus();
               } }),
             _react2.default.createElement(LoggedOutRoute, { path: '/signup', component: _SignUpPage2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/logout', component: _LogoutFunction2.default })
