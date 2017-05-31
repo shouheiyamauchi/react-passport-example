@@ -36,7 +36,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-
 const LoggedOutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     Auth.isUserAuthenticated() ? (
@@ -72,7 +71,6 @@ class Main extends Component {
   toggleAuthenticateStatus() {
     // check authenticated status and toggle state based on that
     this.setState({ authenticated: Auth.isUserAuthenticated() })
-
   }
 
   render() {

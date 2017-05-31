@@ -31,8 +31,10 @@ const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 
+// Set Port, hosting services will look for process.env.PORT
+app.set('port', (process.env.PORT || 3000));
 
 // start the server
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000');
+app.listen(app.get('port'), () => {
+  console.log(`Server is running on port ${app.get('port')}`);
 });
