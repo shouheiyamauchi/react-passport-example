@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --use_strict index.js",
+    "start": "node --use_strict index.js",
+    "dev": "nodemon --use_strict index.js",
     "bundle": "webpack"
   },
   "author": "",

@@ -11,7 +11,7 @@ $ yarn install
 $ sudo mongod
 ```
 ```sh
-$ yarn start
+$ yarn run dev
 ```
 
 When editing the files, run the following command for webpack to watch your files and bundle whenever changes are made:
