@@ -12,7 +12,8 @@ class DashboardPage extends React.Component {
     super(props);
 
     this.state = {
-      secretData: ''
+      secretData: '',
+      user: {}
     };
   }
 
@@ -29,7 +30,8 @@ class DashboardPage extends React.Component {
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
         this.setState({
-          secretData: xhr.response.message
+          secretData: xhr.response.message,
+          user: xhr.response.user
         });
       }
     });
@@ -40,7 +42,7 @@ class DashboardPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (<Dashboard secretData={this.state.secretData} />);
+    return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
   }
 
 }

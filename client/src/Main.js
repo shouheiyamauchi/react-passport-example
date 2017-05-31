@@ -15,6 +15,7 @@ import {
 import Base from './components/Base.jsx';
 import HomePage from './components/HomePage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
+import LogoutFunction from './containers/LogoutFunction.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import DashboardPage from './containers/DashboardPage.jsx';
 import Auth from './modules/Auth';
@@ -35,14 +36,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-const logoutFunc = (props) => {
-  Auth.deauthenticateUser();
+const LoggedOutRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    Auth.isUserAuthenticated() ? (
+      <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }}/>
+    ) : (
+      <Component {...props} {...rest} />
+    )
+  )}/>
+)
 
-  // change the current URL to /
-  props.history.push('/');
-  return null;
-  // return <LoginPage />;
-}
+const PropsRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    <Component {...props} {...rest} />
+  )}/>
+)
 
 class Main extends Component {
   constructor(props) {
@@ -85,15 +96,11 @@ class Main extends Component {
 
             </div>
 
-            <Route exact path="/" render={(props) => (
-              <HomePage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
-            )}/>
+            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <PrivateRoute path="/dashboard" component={DashboardPage}/>
-            <Route path="/login" render={(props) => (
-              <LoginPage {...props} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
-            )}/>
-            <Route path="/signup" component={SignUpPage}/>
-            <Route path="/logout" component={logoutFunc}/>
+            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
+            <LoggedOutRoute path="/signup" component={SignUpPage}/>
+            <Route path="/logout" component={LogoutFunction}/>
           </div>
 
         </Router>
