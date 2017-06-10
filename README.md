@@ -1,5 +1,7 @@
 # React Passport Example Application
 
+An example application which combines a back-end which stores user data and front-end React.js application which handles user authentication sessions.
+
 After cloning the repo, follow the steps below:
 ```sh
 $ cd react-passport
