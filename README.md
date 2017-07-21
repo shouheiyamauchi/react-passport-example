@@ -11,6 +11,16 @@ https://vladimirponomarev.com/blog/authentication-in-react-apps-jwt
 
 However, this version has replaced the React Router v3 which were used in the above tutorials with the most recent React Router v4 which has some major differences. I also made some minor tweaks to account for the NPM packages which had issues due to updates since the tutorial was published.
 
+This application incorporates the following packages:
+
+- axios
+- bcryptjs
+- jsonwebtoken
+- mongoose
+- passport
+- react-router-dom
+- validator
+
 ## Installation
 
 After cloning the repo, follow the steps below:
