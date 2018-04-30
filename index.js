@@ -1,17 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require("path");
 const passport = require('passport');
 const config = require('./config');
+
+const PORT = process.env.PORT || 3001;
 
 // connect to the database and load models
 require('./server/models').connect(config.dbUri);
 
 const app = express();
-// tell the app to look for static files in these directories
-app.use(express.static('./server/static/'));
-app.use(express.static('./client/dist/'));
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // tell the app to parse HTTP body messages
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // pass the passport middleware
 app.use(passport.initialize());
 
@@ -31,10 +36,12 @@ const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 
-// Set Port, hosting services will look for process.env.PORT
-app.set('port', (process.env.PORT || 3000));
+// Send every request to the React app
+// Define any API routes before this runs
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
-// start the server
-app.listen(app.get('port'), () => {
-  console.log(`Server is running on port ${app.get('port')}`);
+app.listen(PORT, function() {
+  console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
