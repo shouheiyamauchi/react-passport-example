@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Auth from '../modules/Auth';
+import Auth from '../utils/Auth';
 
 
 class LogoutFunction extends React.Component {

@@ -11,7 +11,7 @@
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.1.1",
     "react-scripts": "1.0.14",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^3.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

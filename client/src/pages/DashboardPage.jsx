@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from '../modules/Auth';
+import Auth from '../utils/Auth';
 import Dashboard from '../components/Dashboard.jsx';
 
 
