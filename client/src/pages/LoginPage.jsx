@@ -5,13 +5,17 @@ import LoginForm from '../components/LoginForm.jsx';
 import API from '../utils/API';
 
 class LoginPage extends React.Component {
-
-  /**
-   * Class constructor.
-   */
-  constructor(props, context) {
-    super(props, context);
-
+  // set the initial component state
+  state = {
+    errors: {},
+    successMessage: '',
+    user: {
+      email: '',
+      password: ''
+    }
+  }
+  
+  componentDidMount(){
     const storedMessage = localStorage.getItem('successMessage');
     let successMessage = '';
 
@@ -19,18 +23,8 @@ class LoginPage extends React.Component {
       successMessage = storedMessage;
       localStorage.removeItem('successMessage');
     }
-
-    // set the initial component state
-    this.state = {
-      errors: {},
-      successMessage,
-      user: {
-        email: '',
-        password: ''
-      }
-    }
+    this.setState({ successMessage });
   }
-
   /**
    * Process the form.
    *
@@ -41,13 +35,11 @@ class LoginPage extends React.Component {
     event.preventDefault();
 
     // create a string for an HTTP body message
-    const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
-    //const formData = `email=${email}&password=${password}`;
-    API.getUser(email, password).then(res => {
-      // change the component-container state
-        
+    const { email, password } = this.state.user;
 
+    //const formData = `email=${email}&password=${password}`;
+    API.login({email, password}).then(res => {
+      // change the component-container state
         // save the token
         Auth.authenticateUser(res.data.token);
 
@@ -59,51 +51,16 @@ class LoginPage extends React.Component {
         this.setState({
           errors: {}
         });
-    }).catch(err => {
-      // change the component state
-        console.log(err)
-        // const errors = err.data.errors ? err.data.errors : {};
-        // errors.summary = err.data.message;
+    }).catch(( {response} ) => {
 
-        // this.setState({
-        //   errors
-        // });
+        const errors = response.data.errors ? response.data.errors : {};
+        errors.summary = response.data.message;
+
+        this.setState({
+          errors
+        });
       });
-    // // create an AJAX request
-    // const xhr = new XMLHttpRequest();
-    // xhr.open('post', '/auth/login');
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // xhr.responseType = 'json';
-    // xhr.addEventListener('load', () => {
-    //   if (xhr.status === 200) {
-    //     // success
-
-    //     // change the component-container state
-    //     this.setState({
-    //       errors: {}
-    //     });
-
-    //     // save the token
-    //     Auth.authenticateUser(xhr.response.token);
-
-    //     // update authenticated state
-    //     this.props.toggleAuthenticateStatus()
-
-    //     // redirect signed in user to dashboard
-    //     this.props.history.push('/dashboard');
-    //   } else {
-    //     // failure
-
-    //     // change the component state
-    //     const errors = xhr.response.errors ? xhr.response.errors : {};
-    //     errors.summary = xhr.response.message;
-
-    //     this.setState({
-    //       errors
-    //     });
-    //   }
-    // });
-    // xhr.send(formData);
+    
   }
 
   /**
