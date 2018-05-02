@@ -1,3 +1,9 @@
+# React Passport Example w/ create-react-app
+
+This project was forked from [Shouhaei Yamauchi's repo](https://github.com/shouheiyamauchi/react-passport-example) and altered to change the file structure and directory names to line up with my personal preferences, as well as being refactored to use react-scripts and create-react-app for the react portion.
+
+The code has also been refactored to remove the constructor from the component classes, as well as incorporating axios instead of using an XMLHttpRequest.
+
 # React Passport Example Application
 
 An example application which combines a back-end which stores user data and front-end React.js application which handles user authentication sessions.
@@ -13,7 +19,6 @@ However, this version has replaced the React Router v3 which were used in the ab
 
 This application incorporates the following packages:
 
-- axios
 - bcryptjs
 - jsonwebtoken
 - mongoose

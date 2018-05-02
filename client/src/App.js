@@ -2,73 +2,41 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import routes from './routes.js';
-
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
-  withRouter
+  Link
 } from 'react-router-dom'
 
-import Base from './components/Base.jsx';
 import HomePage from './components/HomePage.jsx';
-import LoginPage from './containers/LoginPage.jsx';
-import LogoutFunction from './containers/LogoutFunction.jsx';
-import SignUpPage from './containers/SignUpPage.jsx';
-import DashboardPage from './containers/DashboardPage.jsx';
-import Auth from './modules/Auth';
+import { 
+  PrivateRoute, 
+  PropsRoute, 
+  LoggedOutRoute 
+} from './components/Routes';
+
+import LoginPage from './pages/LoginPage.jsx';
+import LogoutFunction from './pages/LogoutFunction.jsx';
+import SignUpPage from './pages/SignUpPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
+
+import Auth from './utils/Auth';
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    Auth.isUserAuthenticated() ? (
-      <Component {...props} {...rest} />
-    ) : (
-      <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
+class App extends Component {
 
-const LoggedOutRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    Auth.isUserAuthenticated() ? (
-      <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }}/>
-    ) : (
-      <Component {...props} {...rest} />
-    )
-  )}/>
-)
-
-const PropsRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    <Component {...props} {...rest} />
-  )}/>
-)
-
-class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authenticated: false
-    }
-  };
+  state = {
+    authenticated: false
+  }
 
   componentDidMount() {
     // check if user is logged in on refresh
     this.toggleAuthenticateStatus()
   }
 
-  toggleAuthenticateStatus() {
+  toggleAuthenticateStatus = () => {
     // check authenticated status and toggle state based on that
     this.setState({ authenticated: Auth.isUserAuthenticated() })
   }
@@ -96,17 +64,17 @@ class Main extends Component {
 
             </div>
 
-            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
+            <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={this.toggleAuthenticateStatus} />
             <PrivateRoute path="/dashboard" component={DashboardPage}/>
-            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
+            <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={this.toggleAuthenticateStatus} />
             <LoggedOutRoute path="/signup" component={SignUpPage}/>
             <Route path="/logout" component={LogoutFunction}/>
           </div>
 
         </Router>
       </MuiThemeProvider>
-    );
+    )
   }
 }
 
-export default Main;
+export default App;

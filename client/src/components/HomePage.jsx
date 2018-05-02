@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
-import Auth from '../modules/Auth';
+import Auth from '../utils/Auth';
 
 class HomePage extends React.Component {
 
