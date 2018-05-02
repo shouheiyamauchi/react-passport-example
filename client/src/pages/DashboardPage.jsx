@@ -4,17 +4,9 @@ import Dashboard from '../components/Dashboard.jsx';
 
 
 class DashboardPage extends React.Component {
-
-  /**
-   * Class constructor.
-   */
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      secretData: '',
-      user: {}
-    };
+  state = {
+    secretData: '',
+    user: {}
   }
 
   /**

@@ -2,9 +2,9 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "Mern Demo",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "server": "node server.js",
+    "server": "node index.js",
     "client": "cd client && npm run start",
     "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
     "build": "cd client && npm run build",
