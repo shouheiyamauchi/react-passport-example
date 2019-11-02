@@ -17,7 +17,7 @@
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "material-ui": "^0.18.1",
-    "mongoose": "^4.10.4",
+    "mongoose": "^5.7.5",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "prop-types": "^15.5.10",
