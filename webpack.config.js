@@ -16,13 +16,13 @@ module.exports = {
 
     // npm install --save-dev babel-plugin-transform-es2015-destructuring
     // npm install --save-dev babel-plugin-transform-object-rest-spread
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       include: path.join(__dirname, '/client/src'),
       loader: 'babel-loader',
       query: {
-        presets: ["react", "es2015"],
-        plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
+        presets: ["@babel/preset-react", "@babel/preset-env"],
+        plugins: ["@babel/plugin-transform-destructuring", "@babel/plugin-proposal-object-rest-spread"]
       }
     }],
   },
