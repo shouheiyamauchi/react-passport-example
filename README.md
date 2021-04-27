@@ -1,8 +1,8 @@
 # React Passport Example Application
 
-An example application which combines a back-end which stores user data and front-end React.js application which handles user authentication sessions.
+An example application which combines a back-end which stores user data and a front-end React.js application which handles user authentication sessions.
 
-This application be easily separated into two completely different repositories.
+This application can be easily separated into two completely different repositories.
 
 Created using the tutorials below:
 
