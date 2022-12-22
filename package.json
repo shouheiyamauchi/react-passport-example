@@ -15,7 +15,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "jsonwebtoken": "^7.4.1",
+    "jsonwebtoken": "^9.0.0",
     "material-ui": "^0.18.1",
     "mongoose": "^4.10.4",
     "passport": "^0.3.2",
